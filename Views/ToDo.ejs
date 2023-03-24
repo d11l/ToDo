@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+body {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .container {
+    width: 500px;
+    margin: 20px auto;
+  }
+  .form {
+    background-color: #eee;
+    border-radius: 6px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+  }
+  input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    flex: 1;
+  }
+  input:focus {
+    outline: none;
+  }
+  .add {
+    border: none;
+    background-color: #3685f4;
+    color: white;
+    padding: 10px;
+    border-radius: 6px;
+    margin-left: 10px;
+    cursor: pointer;
+    flex: 0;
+  }
+  .tasks {
+    background-color: #eee;
+    margin-top: 20px;
+    border-radius: 6px;
+    padding: 20px;
+  }
+  .tasks .task {
+    background-color: white;
+    padding: 10px;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.3s;
+    cursor: pointer;
+    border: 1px solid #ccc;
+  }
+  .tasks .task:not(:last-child) {
+    margin-bottom: 15px;
+  }
+  .tasks .task:hover {
+    background-color: #f7f7f7;
+  }
+  .tasks .task.done {
+    opacity: 0.5;
+  }
+  .tasks .task .btns a{
+    color: rgba(0, 0, 0, 0.751);
+    text-decoration: none;
+    padding: 6px;
+    border-radius: 4px;
+    background-color: #cc5656;
+    font-size: 14px;
+  }
+  .tasks .task .btns a:first-of-type{
+    margin-right:10px;
+    background-color: rgb(191, 191, 243);
+  }
+
+    </style>
+    <title>To Do App</title>
+</head>
+<body>
+
+    <div class="container">
+        <form class="form" action="/create" method="POST">
+          <input type="text" name="title"/>
+          <input type="submit" class="add" value="Add Task" />
+        </form>
+        <div class="tasks">
+    <% todotasks.forEach(task => {%>
+        <div class="task"><%=task.title%> <div class="btns"><a href="/update/<%=task._id%>">Edit</a><a class="del" href="/delete/<%=task._id%>">Delete</a></div></div>
+        <% }) %>        
+        
+        </div>
+      </div>
+
+</body>
+</html>
